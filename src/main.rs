@@ -29,6 +29,10 @@ use select::{parse_c, parse_t, parse_z, ZPick};
 
 pub type Res<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
+/// Version of the JSON this program prints, checked by the application.
+/// Bump it on any change a caller would notice.
+const PROTOCOL: u32 = 1;
+
 const USAGE: &str = "usage: didascalie-bioformats inspect <file>\n       \
     didascalie-bioformats export <file> --out <dir> [--series S] [--level L] \
     [--z all|mid|max|LIST] [--t all|step:N|LIST] [--c all|LIST]";
@@ -71,6 +75,7 @@ fn inspect(path: &Path) -> Res<()> {
     println!(
         "{}",
         serde_json::to_string(&json!({
+            "protocol": PROTOCOL,
             "file": path.display().to_string(),
             "openMs": open_ms,
             "hasOmeMetadata": ome.is_some(),
@@ -253,7 +258,7 @@ fn export(a: &ExportArgs) -> Res<()> {
     }
     println!(
         "{}",
-        json!({ "event": "done", "files": files, "bytes": total, "ms": t0.elapsed().as_secs_f64() * 1000.0 })
+        json!({ "event": "done", "protocol": PROTOCOL, "files": files, "bytes": total, "ms": t0.elapsed().as_secs_f64() * 1000.0 })
     );
     Ok(())
 }

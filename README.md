@@ -15,7 +15,8 @@ its command line and JSON output, so Didascalie itself is not bound by the GPL.
 didascalie-bioformats inspect <file>
 ```
 
-Prints one JSON document describing the file:
+Prints one JSON document describing the file (`protocol` is the version of
+this output, which the application checks):
 
 - every series, with its size, Z/C/T counts and pixel type;
 - the resolution levels of each series;
