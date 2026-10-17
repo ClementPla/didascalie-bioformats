@@ -1,0 +1,21 @@
+[package]
+name = "didascalie-bioformats"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "Reads microscopy files with bioformats-rs and writes the planes Didascalie imports"
+license = "GPL-2.0-or-later"
+
+[dependencies]
+# GPL: this program is a separate executable so that Didascalie itself is not.
+bioformats = { git = "https://github.com/henriksson-lab/bioformats-rs", rev = "97350e9ac956be5188c40a9755f02706cc01f4d5", default-features = false, features = ["gpl", "jpegxr"] }
+tiff = { version = "0.11", default-features = false, features = ["deflate"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+# Keep each rustc light: the build machine has crashed during big optimised compiles.
+debug = false
+opt-level = 2
+codegen-units = 64
+incremental = false
