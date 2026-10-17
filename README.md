@@ -56,3 +56,11 @@ cargo build --release
 
 `Cargo.lock` pins `zip` to 2.5.0: bioformats-rs at the pinned revision does
 not build with zip 2.6.
+
+## Releases
+
+Pushing a version tag (`git tag v0.1.0 && git push origin v0.1.0`) builds
+the program for Windows, macOS (Apple silicon and Intel) and Linux, and
+attaches the binaries and the licence to a GitHub release. Didascalie's
+release builds download a pinned version and ship it next to the
+application.
