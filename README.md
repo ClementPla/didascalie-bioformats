@@ -9,6 +9,40 @@ It is licensed under the GPL (version 2 or later), because it links
 bioformats-rs. Didascalie runs it as a separate process and talks to it via
 its command line and JSON output, so Didascalie itself is not bound by the GPL.
 
+## Credits
+
+This program only adds a command line around other people's work:
+
+- [**Bio-Formats**](https://www.openmicroscopy.org/bio-formats/), by the
+  [Open Microscopy Environment](https://www.openmicroscopy.org/) (OME)
+  consortium, is where the knowledge of every format comes from
+  ([source](https://github.com/ome/bioformats)).
+- [**bioformats-rs**](https://github.com/henriksson-lab/bioformats-rs), by
+  Johan Henriksson, translates Bio-Formats into Rust, with pure-Rust decoders
+  for JPEG 2000, JPEG-XR, HDF5 and the other codecs the formats use. This
+  program pins a revision of it (see `Cargo.toml`).
+- The [`tiff`](https://github.com/image-rs/image-tiff) crate of the image-rs
+  project writes the output files, and
+  [serde](https://serde.rs/) the JSON.
+
+bioformats-rs is a translation that the OME team has not reviewed or
+endorsed. Please report problems with a file
+[here](https://github.com/ClementPla/didascalie-bioformats/issues), not to
+the Bio-Formats developers.
+
+## Citing
+
+If you publish work that used files read by this program, please cite
+Bio-Formats:
+
+> Linkert M, Rueden CT, Allan C, et al. Metadata matters: access to image
+> data in the real world. *J Cell Biol.* 2010;189(5):777–782.
+> [doi:10.1083/jcb.201004104](https://doi.org/10.1083/jcb.201004104)
+
+and, for the Rust translation, J. Henriksson, *Static analysis-guided agentic
+AI translation enables Rust as a full stack bioinformatics language*,
+[arXiv:2608.13029](https://doi.org/10.48550/arXiv.2608.13029) (2026).
+
 ## Commands
 
 ```
